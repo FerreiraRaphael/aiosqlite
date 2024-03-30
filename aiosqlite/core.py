@@ -8,6 +8,7 @@ Core implementation of aiosqlite proxies
 import asyncio
 import logging
 import sqlite3
+from libsql_client import dbapi2
 from functools import partial
 from pathlib import Path
 from queue import Empty, Queue, SimpleQueue
@@ -389,6 +390,6 @@ def connect(
         else:
             loc = str(database)
 
-        return sqlite3.connect(loc, **kwargs)
+        return dbapi2.connect(loc, **kwargs)
 
     return Connection(connector, iter_chunk_size)
